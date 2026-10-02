@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mauli Tent House | 3D Wedding Planner</title>
+  <meta name="description" content="Mauli Tent House - Interactive 3D wedding tent visualization and event planning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #751d2b;
+      --red: #a6343e;
+      --gold: #d5a54a;
+      --cream: #fff9f1;
+      --pink: #f9e7e3;
+      --green: #6d806c;
+      --dark: #302526;
+      --gray: #756868;
+      --white: #fff;
+      --line: #eadbd3;
+      --shadow: 0 15px 40px rgba(54, 48, 48, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Baloo 2", sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    .container { width: min(1140px, calc(100% - 36px)); margin: auto; }
+    .eyebrow {
+      color: var(--red);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .section-title {
+      margin: 8px 0 12px;
+      color: var(--maroon);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-family: "Playfair Display", serif;
+      line-height: 1.2;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 30px;
+      background: var(--maroon);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s ease;
+      box-shadow: 0 8px 18px rgba(117, 29, 43, .24);
+    }
+    .btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+    .btn.gold {
+      color: var(--dark);
+      background: var(--gold);
+    }
+    section { padding: 90px 0; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 249, 241, .95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+    .logo {
+      font-family: "Playfair Display", serif;
+      color: var(--maroon);
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--maroon);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    #canvas3d {
+      width: 100%;
+      height: 600px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .hero {
+      min-height: auto;
+      display: grid;
+      align-items: center;
+      position: relative;
+      padding: 40px 0;
+    }
+    .hero::before { display: none; }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+    .hero h1 {
+      margin: 18px 0;
+      color: var(--maroon);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-family: "Playfair Display", serif;
+      line-height: 1;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 580px;
+      color: var(--gray);
+      font-size: 20px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+      padding: 24px;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 55px rgba(78,36,30,.22);
+    }
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--maroon);
+      font-size: 25px;
+    }
+    .card h3 {
+      margin-bottom: 8px;
+      color: var(--maroon);
+      font-size: 25px;
+      font-family: "Playfair Display", serif;
+    }
+    .card p { color: var(--gray); font-size: 16px; }
+
+    .controls {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+    .controls h3 {
+      color: var(--maroon);
+      margin-bottom: 15px;
+      font-family: "Playfair Display", serif;
+    }
+    .control-group {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .control-item label {
+      display: block;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .control-item select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      color: var(--dark);
+    }
+    .control-item select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    .button-group button {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      color: var(--maroon);
+      font-weight: 600;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+    .button-group button:hover {
+      background: var(--pink);
+      border-color: var(--gold);
+    }
+    .button-group button.active {
+      background: var(--maroon);
+      color: white;
+    }
+
+    footer {
+      padding: 35px 0;
+      background: #35181e;
+      color: #f6dfd8;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: 1fr; }
+      .control-group { grid-template-columns: repeat(2, 1fr); }
+      #canvas3d { height: 400px; }
+    }
+
+    @media (max-width: 500px) {
+      .control-group { grid-template-columns: 1fr; }
+      .button-group { flex-direction: column; }
+      #canvas3d { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Mauli <span>Tent</span> House</div>
+      <nav class="nav-links" id="navMenu">
+        <a href="#visualizer">3D Visualizer</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu" aria-label="Open menu" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">3D Event Visualization</div>
+        <h1>Visualize Your <span>Dream Wedding</span></h1>
+        <p>Experience an interactive 3D view of your wedding tent setup before booking. Customize colors, styles, and layouts in real-time.</p>
+        <div class="hero-buttons">
+          <a href="#visualizer" class="btn">Launch 3D View</a>
+          <a href="#services" class="btn gold">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="visualizer">
+      <div class="container">
+        <h2 class="section-title">Interactive 3D Tent Visualizer</h2>
+        <canvas id="canvas3d"></canvas>
+
+        <div class="controls">
+          <h3>🎨 Customize Your Setup</h3>
+          
+          <div class="control-group">
+            <div class="control-item">
+              <label for="tentStyle">Tent Style</label>
+              <select id="tentStyle">
+                <option value="classic">Classic Mandap</option>
+                <option value="modern">Modern Canopy</option>
+                <option value="luxury">Luxury Pavilion</option>
+                <option value="bohemian">Bohemian Garden</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="tentColor">Tent Color</label>
+              <select id="tentColor">
+                <option value="#d5a54a">Gold</option>
+                <option value="#751d2b">Maroon</option>
+                <option value="#f9e7e3">Cream</option>
+                <option value="#ffffff">White</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="decorStyle">Decor Theme</label>
+              <select id="decorStyle">
+                <option value="floral">Floral</option>
+                <option value="lights">Lights & Lamps</option>
+                <option value="traditional">Traditional</option>
+                <option value="minimal">Minimal</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="lighting">Lighting</label>
+              <select id="lighting">
+                <option value="day">Daylight</option>
+                <option value="evening">Evening</option>
+                <option value="night">Night</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <label style="color: var(--gray); font-weight: 600; margin-bottom: 10px; display: block;">View Controls</label>
+            <div class="button-group">
+              <button onclick="resetCamera()">Reset View</button>
+              <button onclick="rotateTent()">Auto Rotate</button>
+              <button onclick="toggleWireframe()">Wireframe</button>
+              <button onclick="downloadScreenshot()">📸 Screenshot</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow);">
+          <p style="color: var(--gray); margin-bottom: 10px;">
+            <strong>💡 Tips:</strong> Use your mouse to rotate the view. Scroll to zoom. Try different customization options to see real-time changes in your wedding tent setup.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="eyebrow">What Makes Us Special</div>
+        <h2 class="section-title">Premium Services Included</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🎨</div>
+            <h3>Custom Designs</h3>
+            <p>Personalized tent and decor designs tailored to your vision and budget.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📐</div>
+            <h3>3D Visualization</h3>
+            <p>See your complete setup before the event with our interactive 3D previews.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3>Expert Coordination</h3>
+            <p>Our team handles all setup, styling, and coordination for a stress-free event.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container" style="text-align: center; max-width: 700px;">
+        <div class="eyebrow">Ready to Celebrate?</div>
+        <h2 class="section-title">Book Your Dream Event</h2>
+        <p style="color: var(--gray); margin-bottom: 30px;">Ready to visualize and book your event? Contact us for a personalized consultation and quote.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://wa.me/919876543210?text=Hello%20Mauli%20Tent%20House%2C%20I%20want%20to%20book%20an%20event." class="btn">WhatsApp Us</a>
+          <a href="tel:+919876543210" class="btn gold">Call Now</a>
+        </div>
+        <p style="color: var(--gray); margin-top: 20px; font-size: 14px;">
+          📍 Pune, Maharashtra | 📧 hello@maulitenthous.com
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo">Mauli <span>Tent</span> House</div>
+      <p>© 2025 Mauli Tent House - 3D Wedding Planning. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    let scene, camera, renderer, tent, decorElements = [];
+    let autoRotating = false;
+
+    function initThreeJS() {
+      const canvas = document.getElementById('canvas3d');
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+
+      // Scene setup
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfff9f1);
+      scene.fog = new THREE.Fog(0xfff9f1, 100, 1000);
+
+      // Camera setup
+      camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      camera.position.set(0, 15, 25);
+      camera.lookAt(0, 10, 0);
+
+      // Renderer setup
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.shadowMap.enabled = true;
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      directionalLight.position.set(20, 30, 15);
+      directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 2048;
+      directionalLight.shadow.mapSize.height = 2048;
+      scene.add(directionalLight);
+
+      // Ground plane
+      const groundGeometry = new THREE.PlaneGeometry(200, 200);
+      const groundMaterial = new THREE.MeshStandardMaterial({ 
+        color: 0x90b99f, 
+        roughness: 0.8 
+      });
+      const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // Create initial tent
+      createTent('classic', '#d5a54a', 'floral');
+
+      // Mouse controls
+      setupMouseControls();
+
+      // Event listeners
+      document.getElementById('tentStyle').addEventListener('change', (e) => {
+        updateTent(e.target.value, document.getElementById('tentColor').value, document.getElementById('decorStyle').value);
+      });
+      document.getElementById('tentColor').addEventListener('change', (e) => {
+        updateTent(document.getElementById('tentStyle').value, e.target.value, document.getElementById('decorStyle').value);
+      });
+      document.getElementById('decorStyle').addEventListener('change', (e) => {
+        updateTent(document.getElementById('tentStyle').value, document.getElementById('tentColor').value, e.target.value);
+      });
+      document.getElementById('lighting').addEventListener('change', (e) => {
+        updateLighting(e.target.value);
+      });
+
+      // Animation loop
+      animate();
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        const newWidth = canvas.clientWidth;
+        const newHeight = canvas.clientHeight;
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+      });
+    }
+
+    function createTent(style, color, decor) {
+      // Remove old tent
+      if (tent) scene.remove(tent);
+      decorElements.forEach(el => scene.remove(el));
+      decorElements = [];
+
+      tent = new THREE.Group();
+
+      // Tent structure
+      const geometry = new THREE.ConeGeometry(12, 16, 8);
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(color),
+        metalness: 0.3,
+        roughness: 0.7
+      });
+      const cone = new THREE.Mesh(geometry, material);
+      cone.castShadow = true;
+      cone.receiveShadow = true;
+      tent.add(cone);
+
+      // Base platform
+      const baseGeometry = new THREE.CylinderGeometry(13, 13, 1, 16);
+      const baseMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf9e7e3,
+        roughness: 0.6
+      });
+      const base = new THREE.Mesh(baseGeometry, baseMaterial);
+      base.position.y = -8;
+      base.castShadow = true;
+      base.receiveShadow = true;
+      tent.add(base);
+
+      // Pillars
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const x = Math.cos(angle) * 11;
+        const z = Math.sin(angle) * 11;
+        
+        const pillarGeometry = new THREE.CylinderGeometry(0.6, 0.6, 15, 8);
+        const pillarMaterial = new THREE.MeshStandardMaterial({
+          color: 0xd4a574,
+          metalness: 0.2,
+          roughness: 0.5
+        });
+        const pillar = new THREE.Mesh(pillarGeometry, pillarMaterial);
+        pillar.position.set(x, 0, z);
+        pillar.castShadow = true;
+        tent.add(pillar);
+      }
+
+      // Add decorations
+      addDecorations(decor, tent);
+
+      scene.add(tent);
+    }
+
+    function addDecorations(decorStyle, parent) {
+      if (decorStyle === 'floral') {
+        for (let i = 0; i < 5; i++) {
+          const angle = (i / 5) * Math.PI * 2;
+          const x = Math.cos(angle) * 10;
+          const z = Math.sin(angle) * 10;
+          
+          const sphereGeometry = new THREE.SphereGeometry(1.5, 8, 8);
+          const material = new THREE.MeshStandardMaterial({
+            color: 0xff69b4,
+            emissive: 0xff1493,
+            emissiveIntensity: 0.3
+          });
+          const flower = new THREE.Mesh(sphereGeometry, material);
+          flower.position.set(x, 12, z);
+          flower.castShadow = true;
+          parent.add(flower);
+          decorElements.push(flower);
+        }
+      } else if (decorStyle === 'lights') {
+        for (let i = 0; i < 12; i++) {
+          const angle = (i / 12) * Math.PI * 2;
+          const x = Math.cos(angle) * 11;
+          const z = Math.sin(angle) * 11;
+          
+          const lightGeometry = new THREE.SphereGeometry(0.3, 8, 8);
+          const lightMaterial = new THREE.MeshStandardMaterial({
+            color: 0xffff99,
+            emissive: 0xffff00,
+            emissiveIntensity: 0.8
+          });
+          const lightBulb = new THREE.Mesh(lightGeometry, lightMaterial);
+          lightBulb.position.set(x, 8, z);
+          parent.add(lightBulb);
+          
+          const pointLight = new THREE.PointLight(0xffff99, 0.5, 20);
+          pointLight.position.copy(lightBulb.position);
+          scene.add(pointLight);
+          decorElements.push(lightBulb, pointLight);
+        }
+      }
+    }
+
+    function updateTent(style, color, decor) {
+      createTent(style, color, decor);
+    }
+
+    function setupMouseControls() {
+      let isDragging = false;
+      let previousMousePosition = { x: 0, y: 0 };
+
+      document.getElementById('canvas3d').addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging && tent) {
+          const deltaX = e.clientX - previousMousePosition.x;
+          const deltaY = e.clientY - previousMousePosition.y;
+          
+          tent.rotation.y += deltaX * 0.01;
+          tent.rotation.x += deltaY * 0.01;
+        }
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      document.getElementById('canvas3d').addEventListener('wheel', (e) => {
+        e.preventDefault();
+        camera.position.z += e.deltaY * 0.05;
+        camera.position.z = Math.max(5, Math.min(100, camera.position.z));
+      });
+    }
+
+    function resetCamera() {
+      camera.position.set(0, 15, 25);
+      camera.lookAt(0, 10, 0);
+      if (tent) tent.rotation.set(0, 0, 0);
+      autoRotating = false;
+    }
+
+    function rotateTent() {
+      autoRotating = !autoRotating;
+    }
+
+    function toggleWireframe() {
+      if (tent) {
+        tent.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.material.wireframe = !child.material.wireframe;
+          }
+        });
+      }
+    }
+
+    function updateLighting(type) {
+      scene.children.forEach(child => {
+        if (child instanceof THREE.Light && !(child instanceof THREE.DirectionalLight)) {
+          scene.remove(child);
+        }
+      });
+
+      if (type === 'night') {
+        scene.background = new THREE.Color(0x1a1a2e);
+        scene.fog.color.set(0x1a1a2e);
+      } else if (type === 'evening') {
+        scene.background = new THREE.Color(0xffa500);
+      } else {
+        scene.background = new THREE.Color(0xfff9f1);
+        scene.fog.color.set(0xfff9f1);
+      }
+    }
+
+    function downloadScreenshot() {
+      renderer.render(scene, camera);
+      const link = document.createElement('a');
+      link.href = renderer.domElement.toDataURL('image/png');
+      link.download = 'mauli-tent-3d.png';
+      link.click();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (autoRotating && tent) {
+        tent.rotation.y += 0.005;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    // Initialize when page loads
+    window.addEventListener('load', initThreeJS);
+  </script>
+</body>
+</html>
