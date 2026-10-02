@@ -23,6 +23,7 @@
       --white: #fff;
       --line: #eadbd3;
       --shadow: 0 15px 40px rgba(54, 48, 48, 0.12);
+      --hero-image: url("https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1800&q=85");
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -139,7 +140,7 @@
       align-items: center;
       background:
         linear-gradient(90deg, rgba(255, 249, 241, .97) 0%, rgba(255, 249, 241, .8) 45%, rgba(255, 249, 241, .18)),
-        url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=85")
+        var(--hero-image)
         center/cover;
       position: relative;
       overflow: hidden;
@@ -680,7 +681,7 @@
         rgba(255, 249, 241, .92),
         rgba(255, 249, 241, .84)
       ),
-      url("C:\Users\indug\Downloads\e390402d-a61f-4c33-8c48-c5e701466e64.jpg")
+      var(--hero-image)
       center/cover;
   }
 
@@ -1024,15 +1025,14 @@
 
 @keyframes rotateRing {
   from {
-    transform: rotateX(65deg) rotateZ(0deg);
+    transform: rotateX(65deg) rotateY(0deg);
   }
-
   to {
-    transform: rotateX(65deg) rotateZ(360deg);
+    transform: rotateX(65deg) rotateY(360deg);
   }
 }
 
-/* Floating background sparkles */
+/* Floating background sparklers */
 .hero::before {
   animation: backgroundGlow 5s ease-in-out infinite alternate;
 }
@@ -1042,7 +1042,6 @@
     opacity: .65;
     transform: scale(1);
   }
-
   to {
     opacity: 1;
     transform: scale(1.08);
@@ -1062,7 +1061,7 @@
   height: 100%;
   content: "";
   background: linear-gradient(
-    110deg,
+    90deg,
     transparent,
     rgba(255,255,255,.5),
     transparent
@@ -1078,7 +1077,6 @@
   from {
     left: -100%;
   }
-
   to {
     left: 140%;
   }
@@ -1101,7 +1099,6 @@
   0%, 100% {
     transform: translateY(0) rotateX(10deg);
   }
-
   50% {
     transform: translateY(-7px) rotateX(0deg);
   }
@@ -1167,11 +1164,7 @@
   *::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  .js-animate {
-    opacity: 1;
-    transform: none;
+    transform: none !important;
   }
 }
   </style>
@@ -1182,16 +1175,16 @@
 
   <header>
     <div class="container nav">
-      <a href="#home" class="logo">Mauli <span>Tent House</span></a>
+      <a href="#home" class="logo">Mauli <span> Tent House</span></a>
 
       <button class="menu" id="menuBtn">☰</button>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#services">सेवा</a>
-        <a href="#about">आमच्याबद्दल</a>
-        <a href="#packages">पॅकेजेस</a>
-        <a href="#gallery">गॅलरी</a>
-        <a href="#contact">संपर्क</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#packages">Packages</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -1200,96 +1193,58 @@
     <section class="hero" id="home">
       <div class="container">
         <div class="hero-content">
-          <div class="eyebrow">तुमच्या स्वप्नातील लग्नासाठी</div>
-
-          <h1>
-            सुंदर सजावट,<br>
-            <span>अविस्मरणीय सोहळा.</span>
-          </h1>
-
-          <p>
-            लग्न, साखरपुडा, वाढदिवस आणि सर्व प्रकारच्या कार्यक्रमांसाठी
-            आकर्षक टेंट हाऊस व डेकोरेशन सेवा.
-          </p>
-
-          <div class="hero-badges">
-            <span>💐 Premium Decoration</span>
-            <span>⛺ Tent House</span>
-            <span>✨ Event Planning</span>
-          </div>
+          <div class="eyebrow">Wedding Decoration & Event Styling</div>
+          <h1>Dream <span>Wedding</span> Spaces</h1>
+          <p>Elegant mandaps, premium decor, and unforgettable hosting experiences for your big day.</p>
 
           <div class="hero-buttons">
-            <a href="#contact" class="btn">कोटेशन मिळवा</a>
-            <a href="#services" class="btn gold">आमच्या सेवा पाहा</a>
+            <a href="#contact" class="btn">Book Consultation</a>
+            <a href="#services" class="btn gold">View Services</a>
           </div>
 
-          <div class="hero-info">
-            विश्वासार्ह सेवा · आकर्षक सजावट · योग्य दर
+          <div class="hero-info">Trusted by families for weddings, engagement functions, and festive celebrations</div>
+
+          <div class="hero-badges">
+            <span>Luxury Mandaps</span>
+            <span>Tent House</span>
+            <span>Event Planning</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services">
+    <section class="services" id="services">
       <div class="container">
-        <div class="heading">
-          <div class="eyebrow">आमच्या सेवा</div>
-          <h2 class="section-title">प्रत्येक कार्यक्रमासाठी सुंदर व्यवस्था</h2>
-          <p class="section-text">
-            तुमच्या कार्यक्रमाचा प्रत्येक क्षण खास आणि लक्षात राहणारा बनवण्यासाठी
-            आम्ही संपूर्ण इव्हेंट प्लॅनिंग आणि डेकोरेशन सेवा देतो.
-          </p>
+        <div class="heading js-animate">
+          <div class="eyebrow">Our Services</div>
+          <h2 class="section-title">Everything for your celebration</h2>
         </div>
 
         <div class="cards">
-          <article class="card">
-            <img class="card-image"
-              src="C:\Users\indug\Downloads\OIP.webp"
-              alt="लग्न मंडप सजावट">
-
-            <div class="card-content">
-              <div class="icon">💍</div>
-              <h3>लग्न मंडप सजावट</h3>
-              <p>फुलांची सजावट, स्टेज, मंडप, लाईटिंग आणि पारंपरिक सजावटीची संपूर्ण व्यवस्था.</p>
-              <ul class="service-list">
-                <li>फ्लॉवर डेकोरेशन</li>
-                <li>मंडप व स्टेज</li>
-                <li>LED लाईटिंग</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="card-image"
-              src="C:\Users\indug\Downloads\OIP (1).webp"
-              alt="टेंट हाऊस सजावट">
-
-            <div class="card-content">
-              <div class="icon">⛺</div>
-              <h3>टेंट हाऊस सेवा</h3>
-              <p>मोठे व आकर्षक टेंट, खुर्च्या, टेबल, कार्पेट आणि पाहुण्यांसाठी आरामदायी व्यवस्था.</p>
-              <ul class="service-list">
-                <li>वॉटरप्रूफ टेंट</li>
-                <li>सोफा व खुर्च्या</li>
-                <li> कार्पेट</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="card-image"
-              src="C:\Users\indug\Downloads\OIP (2).webp"
-              alt="कार्यक्रम सजावट">
-
+          <article class="card js-animate from-left">
+            <img class="card-image" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80" alt="Wedding mandap decoration">
             <div class="card-content">
               <div class="icon">🎉</div>
-              <h3>इव्हेंट प्लॅनिंग</h3>
-              <p>साखरपुडा, रिसेप्शन, वाढदिवस, गृहप्रवेश आणि कॉर्पोरेट कार्यक्रमांची पूर्ण आखणी.</p>
-              <ul class="service-list">
-                <li>कार्यक्रम नियोजन</li>
-                <li>केटरिंग समन्वय</li>
-                <li>साउंड व DJ व्यवस्था</li>
-              </ul>
+              <h3>Wedding Decor</h3>
+              <p>Traditional and modern wedding theme styling with floral arrangements, backdrops, and stage designs.</p>
+            </div>
+          </article>
+
+          <article class="card js-animate">
+            <img class="card-image" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Event venue setup">
+            <div class="card-content">
+              <div class="icon">🏡</div>
+              <h3>Tent Setup</h3>
+              <p>Premium tents, elegant seating layouts, and customized arrangements to suit your event scale.</p>
+            </div>
+          </article>
+
+          <article class="card js-animate from-right">
+            <img class="card-image" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80" alt="Wedding planning and family functions">
+            <div class="card-content">
+              <div class="icon">✨</div>
+              <h3>Event Planning</h3>
+              <p>Coordination for weddings, engagement ceremonies, naming functions, and festive family events.</p>
             </div>
           </article>
         </div>
@@ -1298,313 +1253,201 @@
 
     <section class="about" id="about">
       <div class="container owner-wrap">
-        <img
-          class="owner-photo"
-          src="C:\Users\indug\Downloads\fd175546-6b40-4d11-8122-9655344218d4.jpg"
-          alt="Prashant Dhade"
-          onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80';"
-        >
+        <img class="owner-photo js-animate from-left" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Owner with wedding planning family insight">
 
-        <div class="owner-card">
-          <div class="eyebrow">Owner</div>
-          <h3>Mr. Prashant Dhade</h3>
-          <p>
-            Mauli Tent House चे संस्थापक आणि प्रमुख. आम्ही प्रत्येक कार्यक्रमाला
-            सुंदर, पारंपरिक आणि आधुनिक डेकोरेशन देऊन स्मरणीय बनवतो.
-          </p>
+        <div class="owner-card js-animate from-right">
+          <div class="eyebrow">About Mauli Tent House</div>
+          <h3>Designing beautiful celebrations with heart</h3>
+          <p>We bring together tradition, elegance, and practicality to create events that feel personal, premium, and memorable.</p>
+
+          <ul>
+            <li>Customized wedding styling and stage decor</li>
+            <li>Luxury seating and tent arrangements</li>
+            <li>Professional event coordination and support</li>
+          </ul>
 
           <div class="owner-highlights">
             <div>
-              <strong>१+</strong>
-              <span>वर्षांचा अनुभव</span>
+              <strong>500+</strong>
+              <span>Events Styled</span>
             </div>
             <div>
               <strong>10+</strong>
-              <span>यशस्वी कार्यक्रम</span>
+              <span>Years Experience</span>
             </div>
             <div>
-              <strong>१००%</strong>
-              <span>ग्राहक समाधान</span>
+              <strong>4.9/5</strong>
+              <span>Client Rating</span>
             </div>
           </div>
-
-          <a href="#contact" class="btn">संपर्क करा</a>
         </div>
       </div>
     </section>
 
-    <section id="packages">
+    <section class="packages" id="packages">
       <div class="container">
-        <div class="heading">
-          <div class="eyebrow">डेकोरेशन पॅकेजेस</div>
-          <h2 class="section-title">तुमच्या बजेटनुसार पर्याय</h2>
+        <div class="heading js-animate">
+          <div class="eyebrow">Wedding Packages</div>
+          <h2 class="section-title">Flexible plans for every celebration</h2>
         </div>
 
         <div class="cards">
-          <article class="card package">
-            <h3>साधे पॅकेज</h3>
-            <div class="price">₹1५,००० पासून</div>
-            <p>छोट्या कार्यक्रमांसाठी सुंदर आणि बजेट-फ्रेंडली सजावट.</p>
+          <article class="card package js-animate from-left">
+            <h3>Classic Wedding</h3>
+            <p>Perfect for intimate family gatherings and elegant stage styling.</p>
+            <div class="price">₹49,999</div>
             <ul class="service-list">
-              <li>साधा मंडप</li>
-              <li>खुर्च्या </li>
-              <li>बेसिक लाईटिंग</li>
-              <li>फुलांची सजावट</li>
+              <li>Mandap decor</li>
+              <li>Seating backdrop</li>
+              <li>Tent support setup</li>
             </ul>
-            <br>
-            <a href="#contact" class="btn">चौकशी करा</a>
           </article>
 
-          <article class="card package popular">
-            <div class="popular-label">लोकप्रिय</div>
-            <h3>प्रीमियम पॅकेज</h3>
-            <div class="price">₹2५,००० पासून</div>
-            <p>लग्न व रिसेप्शनसाठी आकर्षक आणि पूर्ण सजावट.</p>
+          <article class="card package popular js-animate">
+            <div class="popular-label">Popular</div>
+            <h3>Royal Celebration</h3>
+            <p>Designed for larger gatherings with premium floral and venue styling.</p>
+            <div class="price">₹89,999</div>
             <ul class="service-list">
-              <li>भव्य स्टेज डेकोरेशन</li>
-              <li>फुलांचा मंडप</li>
-              <li>प्रीमियम लाईटिंग</li>
-              <li>सोफा व कार्पेट</li>
+              <li>Premium mandap</li>
+              <li>Customized lighting</li>
+              <li>Full decor coordination</li>
             </ul>
-            <br>
-            <a href="#contact" class="btn">चौकशी करा</a>
           </article>
 
-          <article class="card package">
-            <h3>रॉयल पॅकेज</h3>
-            <div class="price">₹7५,००० पासून</div>
-            <p>मोठ्या लग्नासाठी भव्य आणि रॉयल डेकोरेशन.</p>
+          <article class="card package js-animate from-right">
+            <h3>Signature Event</h3>
+            <p>Luxury styling for big functions with personalized detailing and guest experience.</p>
+            <div class="price">₹1,49,999</div>
             <ul class="service-list">
-              <li>रॉयल थीम सजावट</li>
-              <li>मोठा वॉटरप्रूफ टेंट</li>
-              <li>स्टेज व एन्ट्री गेट</li>
-              <li>साउंड,लाईटिंग</li>
+              <li>Theme concept</li>
+              <li>Luxury matching decor</li>
+              <li>Dedicated setup support</li>
             </ul>
-            <br>
-            <a href="#contact" class="btn">चौकशी करा</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="gallery" style="background:#f8eee8;">
+    <section class="gallery-section" id="gallery">
       <div class="container">
-        <div class="heading">
-          <div class="eyebrow">आमची गॅलरी</div>
-          <h2 class="section-title">आमच्या सजावटीची झलक</h2>
+        <div class="heading js-animate">
+          <div class="eyebrow">Gallery</div>
+          <h2 class="section-title">Recent wedding inspiration</h2>
         </div>
 
-        <div class="gallery">
-          <img src="C:\Users\indug\Downloads\e6e175dd-d50e-405d-9a73-86fa495d8009.jpg" alt="लग्न सजावट">
-          <img src="C:\Users\indug\Downloads\WhatsApp Image 2026-09-26 at 1.56.33 PM.jpeg" alt="फुलांची सजावट">
-          <img src="C:\Users\indug\Downloads\dec196b5-a997-40c6-bbfd-7fec63db87e5.jpg" alt="इव्हेंट टेंट">
-          <img src="C:\Users\indug\Downloads\WhatsApp Image 2026-09-26 at 2.06.33 PM.jpeg"alt="विवाह समारंभ">
+        <div class="gallery js-animate">
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80" alt="Wedding stage">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Event decor setup">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80" alt="Wedding function decor">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Celebration design">
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact">
       <div class="container contact-grid">
-        <div class="contact-copy">
-          <div class="eyebrow">संपर्क करा</div>
-          <h2 class="section-title">तुमच्या कार्यक्रमाची तयारी आजच सुरू करा</h2>
-          <p>
-            तुमच्या कार्यक्रमाची तारीख, ठिकाण आणि बजेट आम्हाला सांगा.
-            आमची टीम तुम्हाला योग्य डेकोरेशन प्लॅन व कोटेशन देईल.
-          </p>
+        <div class="contact-copy js-animate from-left">
+          <div class="eyebrow">Let’s plan your event</div>
+          <h2 class="section-title">Book a consultation</h2>
+          <p>Tell us about your wedding or celebration and we’ll help create a memorable setup tailored to your vision.</p>
 
           <div class="contact-info">
-            <div>
-              📞 <a href="tel:+919763071547">+91 9763071547</a>
-            </div>
-
-            <div>📍तालखेड बुलडाणा महाराष्ट्र</div>
-
-            <div>
-              💬 <a
-                href="https://wa.me/919763071547?text=नमस्कार%20मला%20Mauli%20Tent%20House%20ची%20माहिती%20हवी%20आहे."
-                target="_blank">
-                WhatsApp वर संपर्क करा
-              </a>
-            </div>
+            <div>📞 +91 98765 43210</div>
+            <div>📍 Pune, Maharashtra</div>
+            <div>✉️ hello@maulitenthous.com</div>
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form js-animate from-right" id="contactForm">
           <div class="form-row">
             <label>
-              तुमचे नाव
-              <input type="text" id="customerName" placeholder="तुमचे नाव" required>
+              Full Name
+              <input type="text" name="name" placeholder="Your name" required>
             </label>
-
             <label>
-              मोबाईल नंबर
-              <input type="tel" id="customerPhone" placeholder="9763071547" required>
+              Phone
+              <input type="tel" name="phone" placeholder="Your phone number" required>
             </label>
           </div>
 
           <div class="form-row">
             <label>
-              कार्यक्रमाचा प्रकार
-              <select id="eventType" required>
-                <option value="">निवडा</option>
-                <option>लग्न</option>
-                <option>साखरपुडा</option>
-                <option>रिसेप्शन</option>
-                <option>वाढदिवस</option>
-                <option>इतर कार्यक्रम</option>
+              Event Type
+              <select name="eventType">
+                <option>Wedding</option>
+                <option>Engagement</option>
+                <option>Reception</option>
+                <option>Festival</option>
               </select>
             </label>
-
             <label>
-              कार्यक्रमाची तारीख
-              <input type="date" id="eventDate" required>
+              Budget Range
+              <select name="budget">
+                <option>₹25k - ₹50k</option>
+                <option>₹50k - ₹1L</option>
+                <option>₹1L - ₹2L</option>
+                <option>₹2L+</option>
+              </select>
             </label>
           </div>
 
           <label>
-            तुमची गरज / संदेश
-            <textarea id="customerMessage" placeholder="उदा. 500 लोकांसाठी टेंट आणि स्टेज पाहिजे" required></textarea>
+            Event Details
+            <textarea name="message" placeholder="Tell us about your event needs"></textarea>
           </label>
 
-          <button class="btn" type="submit"><a href="https://wa.me/919763071547?text=नमस्कार%20मला%20Mauli%20Tent%20House%20ची%20माहिती%20हवी%20आहे.">चौकशी पाठवा</a></button>
+          <button type="submit" class="btn">Send Enquiry</button>
+          <div class="success" id="successMessage">Thank you! We will contact you soon.</div>
         </form>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="logo">Mauli <span>Tent House</span></div>
-    <p>तुमच्या आनंदाच्या क्षणांना सुंदर बनवण्यासाठी.</p>
-    <p>© 2025 Mauli Tent House. सर्व हक्क राखीव.</p>
+    <div class="container">
+      <div class="logo">Mauli <span>Tent House</span></div>
+      <p>Creating timeless decor for future memories.</p>
+    </div>
   </footer>
 
-  <a
-    class="floating-whatsapp"
-    href="https://wa.me/919763071547?text=नमस्कार%20मला%20Mauli%20Tent%20House%20ची%20माहिती%20हवी%20आहे."
-    target="_blank"
-    aria-label="WhatsApp वर संपर्क करा">
-    💬
-  </a>
+  <a href="https://wa.me/919876543210" class="floating-whatsapp" aria-label="Chat on WhatsApp">✆</a>
 
   <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
 
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
     });
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
+    const revealItems = document.querySelectorAll('.js-animate');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
       });
-    });
+    }, { threshold: 0.15 });
 
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+    revealItems.forEach((item) => revealObserver.observe(item));
 
-      const name = document.getElementById("customerName").value.trim();
-      const phone = document.getElementById("customerPhone").value.trim();
-      const eventType = document.getElementById("eventType").value;
-      const eventDate = document.getElementById("eventDate").value;
-      const message = document.getElementById("customerMessage").value.trim();
+    const scrollProgress = document.getElementById('scrollProgress');
+    const updateScrollProgress = () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / total) * 100;
+      scrollProgress.style.width = total > 0 ? `${Math.min(progress, 100)}%` : '0%';
+    };
 
-      const whatsappMessage =
-`नमस्कार Mauli Tent House,
+    window.addEventListener('scroll', updateScrollProgress);
+    window.addEventListener('load', updateScrollProgress);
 
-मला कार्यक्रमासाठी चौकशी करायची आहे.
-
-नाव: ${name}
-मोबाईल नंबर: ${phone}
-कार्यक्रमाचा प्रकार: ${eventType}
-कार्यक्रमाची तारीख: ${eventDate}
-माझी गरज / संदेश: ${message}
-
-कृपया मला कोटेशन आणि अधिक माहिती द्या.`;
-
-      const whatsappURL = "https://wa.me/919763071547?text=" + encodeURIComponent(whatsappMessage);
-      window.location.href = whatsappURL;
-    });
-
-    const tiltCards = document.querySelectorAll(".card, .owner-card, .contact-form, .owner-photo");
-
-    tiltCards.forEach((card) => {
-      card.addEventListener("mousemove", (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateY = ((x - centerX) / centerX) * 8;
-        const rotateX = ((y - centerY) / centerY) * -8;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('successMessage').classList.add('show');
+      e.target.reset();
     });
   </script>
-<script>
-  // Scroll reveal animation automatically add करें
-  const elementsToAnimate = document.querySelectorAll(`
-    .heading,
-    .section-text,
-    .cards > .card,
-    .owner-photo,
-    .owner-card,
-    .gallery img,
-    .contact-copy,
-    .contact-form,
-    .hero-badges,
-    .hero-buttons,
-    .hero-info
-  `);
-
-  elementsToAnimate.forEach((element, index) => {
-    element.classList.add("js-animate");
-
-    if (index % 3 === 1) {
-      element.classList.add("from-left");
-    }
-
-    if (index % 3 === 2) {
-      element.classList.add("from-right");
-    }
-  });
-
-  const animationObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.15
-  });
-
-  elementsToAnimate.forEach((element) => {
-    animationObserver.observe(element);
-  });
-
-  // Scroll progress bar
-  const scrollProgress = document.getElementById("scrollProgress");
-
-  window.addEventListener("scroll", () => {
-    const pageHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-
-    const scrollAmount = window.scrollY;
-    const progress =
-      pageHeight > 0 ? (scrollAmount / pageHeight) * 100 : 0;
-
-    scrollProgress.style.width = `${progress}%`;
-  });
-</script>
 </body>
 </html>
