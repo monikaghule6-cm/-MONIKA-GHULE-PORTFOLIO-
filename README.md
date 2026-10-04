@@ -1,51 +1,26 @@
-# Mauli Tent House
+# Monika Ghule Portfolio
 
-A modern, elegant single-page wedding and event decor website for a tent house and event management business. The project showcases wedding tents, wedding planning services, luxury decor, packages, gallery, and a contact/booking form.
+A clean, responsive one-page portfolio website built with HTML, CSS, and a little JavaScript. It is designed to showcase a developer profile with sections for introduction, skills, featured projects, experience, and contact information.
 
-## About the Project
+## Overview
 
-This website is designed for a business offering:
+This project has been updated from a business landing page into a personal portfolio site, with:
 
-- Wedding tents and mandap setups
-- Event decoration and styling
-- Wedding planning and coordination
-- Guest hospitality and venue support
-- Corporate and celebration event solutions
+- Hero section and personal introduction
+- About section and strengths
+- Skill cards for design and development
+- Featured projects section
+- Experience timeline
+- Contact form and social-style contact details
+- Mobile-friendly responsive layout
 
-The site uses a premium, warm color palette with luxury wedding-themed styling, and includes responsive sections for services, packages, gallery, and contact details.
+## Files
 
-## Tech Stack
+- `index.html` — main portfolio page
 
-- HTML5
-- CSS3
-- JavaScript
-- Google Fonts
-- Unsplash imagery
+## Run locally
 
-## Project Structure
-
-- `index.html` — main landing page for the business
-- `index-3d.html` — alternate 3D-style version of the homepage
-- `LICENSE` — project license
-
-## Features
-
-- Sticky navigation and responsive mobile menu
-- Hero section with strong wedding branding
-- Service cards for decor and planning offerings
-- Package pricing section
-- Quick event estimate calculator
-- Gallery of event visuals
-- Contact form and WhatsApp booking CTA
-- Elegant, wedding-inspired design
-
-## How to Run
-
-Since this is a static website, you can open the project directly in a browser:
-
-1. Clone the repository.
-2. Open `index.html` in your browser, or
-3. Use a local web server such as:
+Open the project directly in a browser, or serve it locally:
 
 ```bash
 python -m http.server 8000
@@ -57,23 +32,6 @@ Then visit:
 http://localhost:8000
 ```
 
-## Deployment
+## Notes
 
-This project can be deployed on any static hosting service such as:
-
-- GitHub Pages
-- Netlify
-- Vercel
-- Firebase Hosting
-
-## Contact
-
-Mauli Tent House
-
-- Location: Pune, Maharashtra
-- Phone: +91 98765 43210
-- Email: hello@maulitenthous.com
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+The content uses sample portfolio information and placeholder contact details. You can easily replace the text, links, and project names with your own information.
