@@ -1,37 +1,26 @@
-# Monika Ghule Portfolio
+# Mauli Tent House
 
-A clean, responsive one-page portfolio website built with HTML, CSS, and a little JavaScript. It is designed to showcase a developer profile with sections for introduction, skills, featured projects, experience, and contact information.
+Mauli Tent House is a professional event and tent service website developed to showcase tent decoration, wedding arrangements, sound systems, lighting services, and event management solutions.
 
-## Overview
+## Features
 
-This project has been updated from a business landing page into a personal portfolio site, with:
+* Modern Responsive Design
+* Service Showcase
+* Gallery Section
+* Contact Information
+* Mobile Friendly Layout
 
-- Hero section and personal introduction
-- About section and strengths
-- Skill cards for design and development
-- Featured projects section
-- Experience timeline
-- Contact form and social-style contact details
-- Mobile-friendly responsive layout
+## Technologies Used
 
-## Files
+* HTML5
+* CSS3
+* JavaScript
 
-- `index.html` — main portfolio page
+## Live Demo
 
-## Run locally
+(Add your Vercel or GitHub Pages link here)
 
-Open the project directly in a browser, or serve it locally:
+## Author
 
-```bash
-python -m http.server 8000
-```
+Monika Ghule
 
-Then visit:
-
-```text
-http://localhost:8000
-```
-
-## Notes
-
-The content uses sample portfolio information and placeholder contact details. You can easily replace the text, links, and project names with your own information.
